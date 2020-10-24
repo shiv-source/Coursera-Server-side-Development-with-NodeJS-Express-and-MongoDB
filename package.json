@@ -1,0 +1,39 @@
+{
+  "name": "coursera-server-side-development-with-nodejs-express-and-mongodb",
+  "version": "1.0.0",
+  "description": "server side development",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shiv-source/Coursera-Server-side-Development-with-NodeJS-Express-and-MongoDB.git"
+  },
+  "keywords": [
+    "server",
+    "backend",
+    "coursera",
+    "mongodb",
+    "node",
+    "js."
+  ],
+  "author": "Shiv Kumar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shiv-source/Coursera-Server-side-Development-with-NodeJS-Express-and-MongoDB/issues"
+  },
+  "homepage": "https://github.com/shiv-source/Coursera-Server-side-Development-with-NodeJS-Express-and-MongoDB#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.9",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
