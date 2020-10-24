@@ -25,24 +25,29 @@ dishRouter.route('/')
     res.end('Deleting all dishes');
 });
 
-dishRouter.get("/:dishId", (req,res,next) =>{
+dishRouter.route('/:dishId')
+.all((req,res,next) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    next();
+})
+
+.get((req,res,next) =>{
     return res.end(`Will return a specific dish with id ${req.params.dishId}` );
 
-});
+})
 
-dishRouter.post("/:dishId", (req,res,next) =>{
-    return res.end(`Will add a specific dish with id ${req.params.dishId}` );
-
-});
-
-dishRouter.put("/:dishId", (req,res,next) =>{
+.put((req,res,next) =>{
     return res.end(`Will modify a specific dish with id ${req.params.dishId}` );
 
-});
+})
 
-dishRouter.delete("/:dishId", (req,res,next) =>{
+.delete((req,res,next) =>{
     return res.end(`Will delete a specific dish with id ${req.params.dishId}` );
 
-})
+});
+
+
+
 
 module.exports = dishRouter;

@@ -1,27 +1,48 @@
-const express = require("express");
 
-const router = express.Router();
+const express = require('express');
+const bodyParser = require('body-parser');
 
-router.get("/leaders", (req, res , next ) => {
-    return res.end("Will return all list of leaders");
+const leaderRouter = express.Router();
+
+leaderRouter.use(bodyParser.json());
+
+leaderRouter.route('/')
+.all((req,res,next) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    next();
+})
+
+.get((req,res,next) => {
+    res.end('Will send all the leaderses to you!');
+})
+.post((req, res, next) => {
+    res.end('Will add the leaders: ' + req.body.name + ' with details: ' + req.body.description);
 });
 
-router.post("/leaders", (req, res , next ) => {
-    return res.end("Will add single leaders");
+
+leaderRouter.route('/:leaderId')
+.all((req,res,next) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    next();
+})
+
+.get((req,res,next) =>{
+    return res.end(`Will return a specific leaders with id ${req.params.leaderId}` );
+
+})
+
+.put((req,res,next) =>{
+    return res.end(`Will modify a specific leaders with id ${req.params.leaderId}` );
+
+})
+
+.delete((req,res,next) =>{
+    return res.end(`Will delete a specific leaders with id ${req.params.leaderId}` );
+
 });
 
-router.get("/leaders/:leaderId", (req, res , next ) => {
-    return res.end(`Will return single leaders from the list with id of :${req.params.leaderId}`);
-});
-
-router.put("/leaders/:leaderId", (req, res , next ) => {
-    return res.end(`Will modify single leaders from the list with id of :${req.params.leaderId}`);
-});
-
-router.delete("/leaders/:leaderId", (req, res , next ) => {
-    return res.end(`Will delete single leaders from the list with id of :${req.params.leaderId}`);
-});
 
 
-
-module.exports = router;
+module.exports = leaderRouter;

@@ -1,27 +1,48 @@
-const express = require("express");
 
-const router = express.Router();
+const express = require('express');
+const bodyParser = require('body-parser');
 
-router.get("/promotions", (req, res , next ) => {
-    return res.end("Will return all list of promotions");
+const promoRouter = express.Router();
+
+promoRouter.use(bodyParser.json());
+
+promoRouter.route('/')
+.all((req,res,next) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    next();
+})
+
+.get((req,res,next) => {
+    res.end('Will send all the promotionses to you!');
+})
+.post((req, res, next) => {
+    res.end('Will add the promotions: ' + req.body.name + ' with details: ' + req.body.description);
 });
 
-router.post("/promotions", (req, res , next ) => {
-    return res.end("Will add single promotions");
+
+promoRouter.route('/:promoId ')
+.all((req,res,next) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    next();
+})
+
+.get((req,res,next) =>{
+    return res.end(`Will return a specific promotions with id ${req.params.promoId }` );
+
+})
+
+.put((req,res,next) =>{
+    return res.end(`Will modify a specific promotions with id ${req.params.promoId }` );
+
+})
+
+.delete((req,res,next) =>{
+    return res.end(`Will delete a specific promotions with id ${req.params.promoId }` );
+
 });
 
-router.get("/promotions/:promoId", (req, res , next ) => {
-    return res.end(`Will return single promotions from the list with id of :${req.params.promoId}`);
-});
-
-router.put("/promotions/:promoId", (req, res , next ) => {
-    return res.end(`Will modify single promotions from the list with id of :${req.params.promoId}`);
-});
-
-router.delete("/promotions/:promoId", (req, res , next ) => {
-    return res.end(`Will delete single promotions from the list with id of :${req.params.promoId}`);
-});
 
 
-
-module.exports = router;
+module.exports = promoRouter;

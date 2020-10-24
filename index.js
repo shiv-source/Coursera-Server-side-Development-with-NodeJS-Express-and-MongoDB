@@ -21,11 +21,11 @@ app.use('/dishes', dishRouter);
 
 //routes handler for promotions
 const promoRouter = require("./routes/promoRouter");
-app.use("/", promoRouter);
+app.use("/promotions", promoRouter);
 
 //routes handler for leaders
 const leaderRouter = require("./routes/leaderRouter");
-app.use("/", leaderRouter);
+app.use("/leaders", leaderRouter);
 
 const server = http.createServer(app);
 
