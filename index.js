@@ -19,6 +19,14 @@ const dishRouter = require('./routes/dishRouter');
 
 app.use('/dishes', dishRouter);
 
+//routes handler for promotions
+const promoRouter = require("./routes/promoRouter");
+app.use("/", promoRouter);
+
+//routes handler for leaders
+const leaderRouter = require("./routes/leaderRouter");
+app.use("/", leaderRouter);
+
 const server = http.createServer(app);
 
 server.listen(port, hostname, () => {
