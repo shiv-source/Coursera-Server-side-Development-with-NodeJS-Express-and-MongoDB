@@ -3,7 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const mongoose = require('mongoose');
+require("dotenv").config();
 
+///////////// require routes ///////////////////
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -11,6 +14,20 @@ var dishRouter = require('./routes/dishRouter');
 var promoRouter = require('./routes/promoRouter');
 var leaderRouter = require('./routes/leaderRouter');
 
+
+
+/////////////// connect with db /////////////////////
+
+const connect = mongoose.connect( process.env.REMOTE_DB , { 
+  useCreateIndex : true,
+  useFindAndModify : true,
+  useNewUrlParser : true,
+  useUnifiedTopology : true
+})
+.then( () => console.log("Database is connected successfully."))
+.catch((err) => console.log(err));
+
+///////////////////////////
 
 var app = express();
 
