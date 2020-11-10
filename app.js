@@ -18,7 +18,7 @@ var leaderRouter = require('./routes/leaderRouter');
 
 /////////////// connect with db /////////////////////
 
-const connect = mongoose.connect( process.env.REMOTE_DB , { 
+mongoose.connect( process.env.REMOTE_DB , { 
   useCreateIndex : true,
   useFindAndModify : true,
   useNewUrlParser : true,
